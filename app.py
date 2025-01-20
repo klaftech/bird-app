@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 from flask import Flask, jsonify, make_response
 from flask_migrate import Migrate
@@ -17,7 +19,6 @@ db.init_app(app)
 api = Api(app)
 
 class Birds(Resource):
-
     def get(self):
         birds = [bird.to_dict() for bird in Bird.query.all()]
         return make_response(jsonify(birds), 200)
